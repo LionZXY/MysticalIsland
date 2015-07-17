@@ -66,7 +66,7 @@ public class ContainerGun extends Container{
             itemstack = itemstack1.copy();
 
             if (numSlot < INV_START) {
-                //Move item from gun inventory to inventory
+                //Move item from gun inventory to inventory. WORKING
                 if (!this.mergeItemStack(itemstack1, INV_START, HOTBAR_END+1, true)) {
 
                     return null;
@@ -75,13 +75,13 @@ public class ContainerGun extends Container{
                 slot.onSlotChange(itemstack1, itemstack);
             } else {
                 if (numSlot >= INV_START && numSlot <= INV_END) {
-                                        /* Item in Player Inventory, move to the gun inventory */
+                     //Move item from player main inventory to gun inventory. WORKING
                     System.out.println("Item in Player Inventory, move to the gun inventory ");
                     if (!this.mergeItemStack(itemstack1, 0, 2, false)) {
                         return null;
                     }
                 }
-                                /* Item in the Hot Bar, move it to Player Inventory */
+                    //Mive from Hot Bar player inventory to main player inventory. NOT WORKING
                 else if (numSlot >= HOTBAR_START && numSlot < HOTBAR_END + 1) {
                     if (!this.mergeItemStack(itemstack1, INV_START, INV_END, false)) {
                         System.out.println("Item in the Hot Bar, move it to Player Inventory");

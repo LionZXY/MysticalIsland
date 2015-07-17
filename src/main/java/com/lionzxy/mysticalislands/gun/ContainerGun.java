@@ -12,6 +12,10 @@ import net.minecraft.item.ItemStack;
  * Created by lionzxy on 16.07.15.
  */
 public class ContainerGun extends Container{
+
+    public final InventoryGun inventory;
+    private int currentSlot;
+
     private static final int
             /*Наш инвентарь идет так:
                      0  1  2
@@ -28,10 +32,11 @@ public class ContainerGun extends Container{
 
 
     public ContainerGun(EntityPlayer player,ItemStack itemStack){
-
+        this.inventory=new InventoryGun(itemStack);
+        currentSlot=player.inventory.currentItem;
         //Gun inventory
         for (int i = 0; i < InventoryGun.INV_SIZE; ++i) {
-            this.addSlotToContainer(new Slot(new InventoryGun(itemStack),i,81+i*18,29));;
+            this.addSlotToContainer(new Slot(inventory,i,81+i*18,29));;
         }
 
         //Main inventory
@@ -78,8 +83,8 @@ public class ContainerGun extends Container{
                 }
                                 /* Item in the Hot Bar, move it to Player Inventory */
                 else if (numSlot >= HOTBAR_START && numSlot < HOTBAR_END + 1) {
-                    System.out.println("Item in the Hot Bar, move it to Player Inventory ");
                     if (!this.mergeItemStack(itemstack1, INV_START, INV_END, false)) {
+                        System.out.println("Item in the Hot Bar, move it to Player Inventory");
                         return null;
                     }
                 }
@@ -98,6 +103,15 @@ public class ContainerGun extends Container{
             slot.onPickupFromSlot(player, itemstack1);
         }
         return itemstack;
+    }
+    @Override
+    public void onContainerClosed(EntityPlayer player) {
+        if (!player.worldObj.isRemote) {
+            if (player.inventory.mainInventory[currentSlot] != null) {
+                player.inventory.setInventorySlotContents(currentSlot, null);
+            }
+        }
+        super.onContainerClosed(player);
     }
 /*
    protected boolean mergeItemStack(ItemStack itemStack, int startInvSlot, int endInvSlot, boolean p_75135_4_)

@@ -33,13 +33,13 @@ public class ContainerGun extends Container{
                 /* Player Main Inventory */
         for (i = 0; i < 3; ++i) {
             for (int j = 0; j < 9; ++j) {
-                this.addSlotToContainer(new Slot(inventoryPlayer, j + i * 9 + 9, 8 + j * 18, 55 + i * 18));
+                this.addSlotToContainer(new Slot(inventoryPlayer, j + i * 9 + 9, 9 + j * 18, 78 + i * 18));
             }
         }
 
                 /* Player Hotbar */
         for (i = 0; i < 9; ++i) {
-            this.addSlotToContainer(new Slot(inventoryPlayer, i, 8 + i * 18, 113));
+            this.addSlotToContainer(new Slot(inventoryPlayer, i, 9 + i * 18, 136));
         }
     }
 

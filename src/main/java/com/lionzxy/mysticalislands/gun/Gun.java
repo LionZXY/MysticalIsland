@@ -19,9 +19,13 @@ public class Gun extends Item {
         this.setUnlocalizedName("testgun");
 
     }
-    public ItemStack onItemRightClick(ItemStack item, World worldIn, EntityPlayer player)
-    {
-        Minecraft.getMinecraft().displayGuiScreen(new GuiGun(new ContainerGun(player,player.inventory,new InventoryGun(item))));
-        return super.onItemRightClick(item,worldIn,player);
+    public ItemStack onItemRightClick(ItemStack item, World world, EntityPlayer player){
+    if (player.isSneaking()) {
+        Minecraft.getMinecraft().displayGuiScreen(new GuiGun(new ContainerGun(player, player.inventory, new InventoryGun(item))));
+    }if (!world.isRemote)
+        {
+            world.spawnEntityInWorld(new EntityGun(world, player,7));
+        }
+        return item;
     }
 }

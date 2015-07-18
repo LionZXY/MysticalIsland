@@ -21,7 +21,7 @@ public class Gun extends Item {
     }
     public ItemStack onItemRightClick(ItemStack item, World worldIn, EntityPlayer player)
     {
-        Minecraft.getMinecraft().displayGuiScreen(new GuiGun(new ContainerGun(player,item)));
+        Minecraft.getMinecraft().displayGuiScreen(new GuiGun(new ContainerGun(player,player.inventory,new InventoryGun(item))));
         return super.onItemRightClick(item,worldIn,player);
     }
 }

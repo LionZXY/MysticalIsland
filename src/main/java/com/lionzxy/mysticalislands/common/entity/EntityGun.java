@@ -1,4 +1,4 @@
-package com.lionzxy.mysticalislands.gun;
+package com.lionzxy.mysticalislands.common.entity;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.projectile.EntityThrowable;

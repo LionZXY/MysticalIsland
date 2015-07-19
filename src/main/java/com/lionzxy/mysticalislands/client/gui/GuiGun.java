@@ -1,8 +1,9 @@
-package com.lionzxy.mysticalislands.gun;
+package com.lionzxy.mysticalislands.client.gui;
 
 import com.lionzxy.mysticalislands.MysticalIslandsVersion;
+import com.lionzxy.mysticalislands.common.container.ContainerGun;
+import com.lionzxy.mysticalislands.common.inventory.InventoryGun;
 import net.minecraft.client.gui.inventory.GuiContainer;
-import net.minecraft.inventory.Container;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 

@@ -1,6 +1,6 @@
 package com.lionzxy.mysticalislands;
 
-import com.lionzxy.mysticalislands.gun.Gun;
+import com.lionzxy.mysticalislands.common.item.Gun;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.item.Item;
 

@@ -1,4 +1,4 @@
-package com.lionzxy.mysticalislands.gun;
+package com.lionzxy.mysticalislands.common.libs;
 
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;

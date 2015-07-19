@@ -1,5 +1,7 @@
-package com.lionzxy.mysticalislands.gun;
+package com.lionzxy.mysticalislands.common.container;
 
+import com.lionzxy.mysticalislands.common.inventory.InventoryGun;
+import com.lionzxy.mysticalislands.common.libs.SlotGun;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;

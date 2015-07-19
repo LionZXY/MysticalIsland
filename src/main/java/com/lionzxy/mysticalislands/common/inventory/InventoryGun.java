@@ -1,4 +1,4 @@
-package com.lionzxy.mysticalislands.gun;
+package com.lionzxy.mysticalislands.common.inventory;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;

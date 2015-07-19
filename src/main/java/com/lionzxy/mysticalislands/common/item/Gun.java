@@ -1,10 +1,12 @@
-package com.lionzxy.mysticalislands.gun;
+package com.lionzxy.mysticalislands.common.item;
 
-import com.lionzxy.mysticalislands.MysticalIslandsVersion;
+import com.lionzxy.mysticalislands.client.gui.GuiGun;
+import com.lionzxy.mysticalislands.common.container.ContainerGun;
+import com.lionzxy.mysticalislands.common.entity.EntityGun;
+import com.lionzxy.mysticalislands.common.inventory.InventoryGun;
 import net.minecraft.client.Minecraft;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;

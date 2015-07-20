@@ -39,11 +39,12 @@ public class RenderGun implements IItemRenderer {
         switch (type){
             case EQUIPPED:
             case EQUIPPED_FIRST_PERSON:
-                float scale = 3F;
+                float scale = 2F;
                 GL11.glPushMatrix();
                 GL11.glDisable(GL11.GL_LIGHTING);
                 GL11.glScalef(scale, scale, scale);
-                //Minecraft.getMinecraft().renderEngine.bindTexture(new ResourceLocation(MysticalIslandsVersion.MODID, "textures/items/flintPistol.png"));
+                GL11.glRotatef(220F, 0F, 0F, 0F);
+                Minecraft.getMinecraft().renderEngine.bindTexture(new ResourceLocation(MysticalIslandsVersion.MODID, "textures/models/flintGun.png"));
                 model.render((Entity)data[1],0.0F,0.0F,0.0F,0.0F,0.0F,0.07F);
                 GL11.glEnable(GL11.GL_LIGHTING);
                 GL11.glPopMatrix();

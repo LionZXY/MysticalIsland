@@ -1,5 +1,6 @@
 package com.lionzxy.mysticalislands.common.item;
 
+import com.lionzxy.mysticalislands.MysticalIslandsVersion;
 import com.lionzxy.mysticalislands.client.gui.GuiGun;
 import com.lionzxy.mysticalislands.common.container.ContainerGun;
 import com.lionzxy.mysticalislands.common.entity.EntityGun;
@@ -11,12 +12,16 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
+
+import javax.annotation.Resource;
 
 /**
  * Created by lionzxy on 16.07.15.
  */
 public class Gun extends Item {
+    String resourceLocation;
     public Gun(){
         super();
         this.setCreativeTab(CreativeTabs.tabBlock);

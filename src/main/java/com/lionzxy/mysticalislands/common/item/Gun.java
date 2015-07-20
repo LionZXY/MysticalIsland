@@ -4,6 +4,8 @@ import com.lionzxy.mysticalislands.client.gui.GuiGun;
 import com.lionzxy.mysticalislands.common.container.ContainerGun;
 import com.lionzxy.mysticalislands.common.entity.EntityGun;
 import com.lionzxy.mysticalislands.common.inventory.InventoryGun;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.Minecraft;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
@@ -29,5 +31,9 @@ public class Gun extends Item {
             world.spawnEntityInWorld(new EntityGun(world, player,7));
         }
         return item;
+    }
+    @SideOnly(Side.CLIENT)
+    public boolean isFull3D() {
+        return true;
     }
 }

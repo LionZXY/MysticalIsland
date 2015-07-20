@@ -19,5 +19,6 @@ public class MysticalIslands {
     {
         MysticalIslandsItems.allLoad();
         proxy.registerProxies();
+        proxy.registerRender();
     }
 }

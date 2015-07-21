@@ -2,6 +2,7 @@ package com.lionzxy.mysticalisland.common.item;
 
 import com.lionzxy.mysticalisland.MysticalIsland;
 import com.lionzxy.mysticalisland.MysticalIslandGuiHandler;
+import com.lionzxy.mysticalisland.MysticalIslandVersion;
 import com.lionzxy.mysticalisland.common.entity.EntityGun;
 import com.lionzxy.mysticalisland.common.inventory.InventoryGun;
 import cpw.mods.fml.relauncher.Side;
@@ -32,10 +33,11 @@ public class Gun extends Item {
 
     public ItemStack onItemRightClick(ItemStack item, World world, EntityPlayer player){
         if (!world.isRemote && player.isSneaking()) player.openGui(MysticalIsland.instance, MysticalIslandGuiHandler.GUN, world, player.inventory.currentItem, 0, 0);
-        if (!world.isRemote)
+        if (!world.isRemote && Shot(player))
         {
-            //world.playSound(player.posX, player.posY, player.posZ, "dig.stone", 1.0F, 0.6F, false);
-            world.spawnEntityInWorld(new EntityGun(world, player,9000000));
+
+            //world.playSound(player.posX, player.posY, player.posZ, MysticalIslandVersion.MODID+":flint", 15.0F, 15F, false);
+            world.spawnEntityInWorld(new EntityGun(world, player,1));
         }
         return item;
     }
@@ -51,4 +53,15 @@ public class Gun extends Item {
     public static InventoryGun getInventory(ItemStack gun) {
         return new InventoryGun(gun);
     }
+    public static boolean Shot(EntityPlayer player){
+        ItemStack currentItem = player.getCurrentEquippedItem();
+        NBTTagList items = player.getCurrentEquippedItem().getTagCompound().getTagList("ItemInventory", Constants.NBT.TAG_COMPOUND);
+        if(currentItem.hasTagCompound()){
+            // TO DO
+            System.out.println("Item has NBT");
+
+            System.out.println("Display name 0 slot: "+ItemStack.loadItemStackFromNBT(items.getCompoundTagAt(0)));
+        }
+      // return false;
+        return true;}
 }

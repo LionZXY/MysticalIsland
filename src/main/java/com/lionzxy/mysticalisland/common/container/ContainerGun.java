@@ -2,7 +2,6 @@ package com.lionzxy.mysticalisland.common.container;
 
 import com.lionzxy.mysticalisland.common.inventory.InventoryGun;
 import com.lionzxy.mysticalisland.common.item.Gun;
-import com.lionzxy.mysticalisland.common.libs.SlotGun;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
@@ -26,7 +25,7 @@ public class ContainerGun extends Container{
 
                 /* Gun Inventoty */
         for (i = 0; i < InventoryGun.INV_SIZE; ++i) {
-            this.addSlotToContainer(new SlotGun(this.inventory, i, 63 + i * 18, 29));
+            this.addSlotToContainer(new Slot(this.inventory, i, 63 + i * 18, 29));
         }
 
                 /* Player Main Inventory */

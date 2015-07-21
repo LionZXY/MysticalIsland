@@ -39,6 +39,7 @@ public class InventoryGun implements IInventory {
 
             // Read the inventory contents from NBT
             readFromNBT(stack.getTagCompound());
+
         }
 
         public ItemStack getInvItem() {
@@ -105,10 +106,11 @@ public class InventoryGun implements IInventory {
 
         @Override
         public void markDirty() {
-            for (int i = 0; i < getSizeInventory(); ++i) {
+            for (int i = 0; i < getSizeInventory(); i++) {
                 if (getStackInSlot(i) != null && getStackInSlot(i).stackSize == 0)
                     inventory[i] = null;
             }
+
             writeToNBT(invItem.getTagCompound());
         }
 
@@ -159,17 +161,12 @@ public class InventoryGun implements IInventory {
             NBTTagList items = new NBTTagList();
 
             for (int i = 0; i < getSizeInventory(); ++i) {
-                // Only write stacks that contain items
-                if (getStackInSlot(i) != null) {
-                    // Make a new NBT Tag Compound to write the itemstack and slot index to
-                    NBTTagCompound item = new NBTTagCompound();
-                    item.setInteger("Slot", i);
-                    // Writes the itemstack in slot(i) to the Tag Compound we just made
-                    getStackInSlot(i).writeToNBT(item);
-
-                    // add the tag compound to our tag list
-                    items.appendTag(item);
-                }
+               if(inventory[i]!=null && inventory[i].stackSize != 0){
+                   NBTTagCompound tag = items.getCompoundTagAt(i);
+                   tag.setByte("Slot",(byte)i);
+                   inventory[i].writeToNBT(tag);
+                   items.appendTag(tag);
+               }
             }
             // Add the TagList to the ItemStack's Tag Compound with the name "ItemInventory"
             tagcompound.setTag("ItemInventory", items);

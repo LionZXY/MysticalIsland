@@ -114,7 +114,7 @@ public class InventoryGun implements IInventory {
 
         @Override
         public boolean isUseableByPlayer(EntityPlayer player) {
-            return player.getHeldItem() == invItem;
+            return true;
         }
 
         @Override
@@ -124,12 +124,12 @@ public class InventoryGun implements IInventory {
 
         @Override
         public void closeInventory() {
-
+            writeToNBT(invItem.getTagCompound());
         }
 
         @Override
         public boolean isItemValidForSlot(int slot, ItemStack itemstack) {
-            return false;
+            return true;
         }
 
         /**

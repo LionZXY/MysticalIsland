@@ -1,5 +1,7 @@
 package com.lionzxy.mysticalislands.common.item;
 
+import com.lionzxy.mysticalislands.MysticalIslands;
+import com.lionzxy.mysticalislands.MysticalIslandsGuiHandler;
 import com.lionzxy.mysticalislands.MysticalIslandsVersion;
 import com.lionzxy.mysticalislands.client.gui.GuiGun;
 import com.lionzxy.mysticalislands.common.container.ContainerGun;
@@ -12,6 +14,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 
@@ -26,12 +29,11 @@ public class Gun extends Item {
         super();
         this.setCreativeTab(CreativeTabs.tabBlock);
         this.setUnlocalizedName("testgun");
-
     }
+
     public ItemStack onItemRightClick(ItemStack item, World world, EntityPlayer player){
-    if (player.isSneaking()) {
-        Minecraft.getMinecraft().displayGuiScreen(new GuiGun(new ContainerGun(player, player.inventory, new InventoryGun(item))));
-    }if (!world.isRemote)
+        if (!world.isRemote && player.isSneaking()) player.openGui(MysticalIslands.instance, MysticalIslandsGuiHandler.GUN, world, player.inventory.currentItem, 0, 0);
+        if (!world.isRemote)
         {
             world.spawnEntityInWorld(new EntityGun(world, player,7));
         }
@@ -40,5 +42,9 @@ public class Gun extends Item {
     @SideOnly(Side.CLIENT)
     public boolean isFull3D() {
         return true;
+    }
+
+    public static InventoryGun getInventory(ItemStack gun) {
+        return new InventoryGun(gun);
     }
 }

@@ -13,6 +13,8 @@ public class MysticalIslands {
 
     @SidedProxy(clientSide = "com.lionzxy.mysticalislands.proxy.ClientProxy",serverSide = "com.lionzxy.mysticalislands.proxy.CommonProxy")
     public static CommonProxy proxy;
+    @Mod.Instance
+    public static MysticalIslands instance;
 
     @Mod.EventHandler
     public void preLoad(FMLPreInitializationEvent event)

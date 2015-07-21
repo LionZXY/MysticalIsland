@@ -1,6 +1,7 @@
 package com.lionzxy.mysticalislands.common.container;
 
 import com.lionzxy.mysticalislands.common.inventory.InventoryGun;
+import com.lionzxy.mysticalislands.common.item.Gun;
 import com.lionzxy.mysticalislands.common.libs.SlotGun;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -13,16 +14,12 @@ import net.minecraft.item.ItemStack;
  */
 public class ContainerGun extends Container{
 
-    public final InventoryGun inventory;
+    private final InventoryGun inventory;
+    private final ItemStack gun;
     private int currentSlot;
 
-    private static final int INV_START = InventoryGun.INV_SIZE,
-            INV_END = INV_START + 26,
-            HOTBAR_START = INV_END + 1,
-            HOTBAR_END = HOTBAR_START + 8;
-
-    public ContainerGun(EntityPlayer par1Player, InventoryPlayer inventoryPlayer, InventoryGun inventory) {
-        this.inventory = inventory;
+    public ContainerGun(EntityPlayer par1Player, InventoryPlayer inventoryPlayer, ItemStack gun) {
+        this.inventory = Gun.getInventory(this.gun = gun);
         this.currentSlot = inventoryPlayer.currentItem;
 
         int i;
@@ -41,7 +38,7 @@ public class ContainerGun extends Container{
 
                 /* Player Hotbar */
         for (i = 0; i < 9; ++i) {
-            this.addSlotToContainer(new Slot(inventoryPlayer, i, 9 + i * 18, 136));
+            this.addSlotToContainer(new Slot(inventoryPlayer, i, 8 + i * 18, 136));
         }
     }
 
@@ -54,49 +51,38 @@ public class ContainerGun extends Container{
      * Called when a player shift-clicks on a slot. You must override this or you will crash when someone does that.
      * Only real change we make to this is to set needsUpdate to true at the end.
      */
-    public ItemStack transferStackInSlot(EntityPlayer par1EntityPlayer, int par2) {
-        ItemStack itemstack = null;
-        Slot slot = (Slot) this.inventorySlots.get(par2);
+    public ItemStack transferStackInSlot(EntityPlayer par1EntityPlayer, int slotID) {
+        ItemStack stack = null;
+        Slot slot = (Slot) this.inventorySlots.get(slotID);
 
-        if (slot != null && slot.getHasStack()) {
-            ItemStack itemstack1 = slot.getStack();
-            itemstack = itemstack1.copy();
+        if (slot != null && slot.getHasStack())
+        {
+            ItemStack slotStack = slot.getStack();
+            stack = slotStack.copy();
 
-            if (par2 < INV_START) {
-                if (!this.mergeItemStack(itemstack1, INV_START, HOTBAR_END + 1, true)) {
+            if (slotID < inventory.getSizeInventory())
+            {
+                if (!this.mergeItemStack(slotStack, inventory.getSizeInventory(), this.inventorySlots.size(), true))
+                {
                     return null;
                 }
-
-                slot.onSlotChange(itemstack1, itemstack);
-            } else {
-                if (par2 >= INV_START && par2 < HOTBAR_START) {
-                                        /* Item in Player Inventory, move to the Hot Bar */
-                    if (!this.mergeItemStack(itemstack1, HOTBAR_START, HOTBAR_END + 1, false)) {
-                        return null;
-                    }
-                }
-                                /* Item in the Hot Bar, move it to Player Inventory */
-                else if (par2 >= HOTBAR_START && par2 < HOTBAR_END + 1) {
-                    if (!this.mergeItemStack(itemstack1, INV_START, INV_END + 1, false)) {
-                        return null;
-                    }
-                }
             }
-
-            if (itemstack1.stackSize == 0) {
-                slot.putStack((ItemStack) null);
-            } else {
-                slot.onSlotChanged();
-            }
-
-            if (itemstack1.stackSize == itemstack.stackSize) {
+            else if (!this.mergeItemStack(slotStack, 0, inventory.getSizeInventory(), false))
+            {
                 return null;
             }
 
-            slot.onPickupFromSlot(par1EntityPlayer, itemstack1);
+            if (slotStack.stackSize == 0)
+            {
+                slot.putStack((ItemStack) null);
+            }
+            else
+            {
+                slot.onSlotChanged();
+            }
         }
 
-        return itemstack;
+        return stack;
     }
 
     @Override

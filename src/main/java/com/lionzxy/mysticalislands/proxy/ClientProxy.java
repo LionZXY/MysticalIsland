@@ -14,6 +14,6 @@ public class ClientProxy extends CommonProxy{
        MinecraftForgeClient.registerItemRenderer(MysticalIslandsItems.testGun, new RenderGun());
     }
     public void registerProxies(){
-
+        super.registerProxies();
     }
 }

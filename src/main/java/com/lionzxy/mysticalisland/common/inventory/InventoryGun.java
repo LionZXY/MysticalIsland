@@ -124,6 +124,7 @@ public class InventoryGun implements IInventory {
 
         @Override
         public void closeInventory() {
+
             writeToNBT(invItem.getTagCompound());
         }
 

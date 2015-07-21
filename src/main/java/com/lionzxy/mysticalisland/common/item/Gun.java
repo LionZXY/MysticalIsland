@@ -10,7 +10,12 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
 import net.minecraft.world.World;
+import net.minecraftforge.common.util.Constants;
+
+import java.util.List;
 
 /**
  * Created by lionzxy on 16.07.15.
@@ -22,6 +27,7 @@ public class Gun extends Item {
         this.setCreativeTab(CreativeTabs.tabBlock);
         this.setUnlocalizedName("testgun");
         this.setTextureName("flintgun");
+        this.setMaxStackSize(1);
     }
 
     public ItemStack onItemRightClick(ItemStack item, World world, EntityPlayer player){
@@ -29,7 +35,7 @@ public class Gun extends Item {
         if (!world.isRemote)
         {
             //world.playSound(player.posX, player.posY, player.posZ, "dig.stone", 1.0F, 0.6F, false);
-            world.spawnEntityInWorld(new EntityGun(world, player,7));
+            world.spawnEntityInWorld(new EntityGun(world, player,9000000));
         }
         return item;
     }
@@ -38,7 +44,10 @@ public class Gun extends Item {
     public boolean isFull3D() {
         return true;
     }
-
+    public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4)
+    {
+        //list.add("Flint Gun");
+    }
     public static InventoryGun getInventory(ItemStack gun) {
         return new InventoryGun(gun);
     }

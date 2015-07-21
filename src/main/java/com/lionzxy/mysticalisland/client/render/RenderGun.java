@@ -44,8 +44,8 @@ public class RenderGun implements IItemRenderer {
                 GL11.glTranslatef(1F, 1F, 0F);
                 break;
             case EQUIPPED:
-                GL11.glRotatef(360F, -0.4F, 3F, 0F);
-                GL11.glTranslatef(0.1F, 0.1F, 0F);
+                GL11.glRotatef(180F, -0.4F, 1F, 0F);
+                GL11.glTranslatef(-0.3F, -0.3F, 0F);
                 break;
 
         }

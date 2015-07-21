@@ -69,4 +69,5 @@ public class EntityGun extends EntityThrowable
             this.setDead();
         }
     }
+
 }

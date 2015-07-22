@@ -7,6 +7,7 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagList;
 
 /**
  * Created by lionzxy on 16.07.15.
@@ -85,8 +86,8 @@ public class ContainerGun extends Container{
 
     @Override
     public void onContainerClosed(EntityPlayer player) {
-        inventory.closeInventory(); //Выводит
-        System.out.println(player.inventory.getCurrentItem().getTagCompound());//Пусто
+        inventory.writeToNBT(player.inventory.getCurrentItem().getTagCompound());
+        System.out.println(player.inventory.getCurrentItem().getTagCompound());
         super.onContainerClosed(player);
 
     }

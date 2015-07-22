@@ -65,7 +65,6 @@ public class InventoryGun implements IInventory {
                     stack = stack.splitStack(amount);
                     markDirty();
                 } else {
-                    System.out.println("ELSE!");
                     setInventorySlotContents(slot, null);
                 }
             }
@@ -127,7 +126,6 @@ public class InventoryGun implements IInventory {
         @Override
         public void closeInventory() {
             writeToNBT(invItem.getTagCompound());
-            System.out.println(invItem.getTagCompound());
         }
 
         @Override
@@ -139,9 +137,7 @@ public class InventoryGun implements IInventory {
          * A custom method to read our inventory from an ItemStack's NBT compound
          */
         public void readFromNBT(NBTTagCompound tagcompound) {
-            // Gets the custom taglist we wrote to this compound.
-//Не показывает (Пустое)
-            NBTTagList items = tagcompound.getTagList("ItemInventory", Constants.NBT.TAG_COMPOUND);
+            NBTTagList items = tagcompound.getTagList("Items", Constants.NBT.TAG_COMPOUND);
 
             for (int i = 0; i < items.tagCount(); ++i) {
                 NBTTagCompound item = /*(NBTTagCompound)*/ items.getCompoundTagAt(i);
@@ -169,7 +165,6 @@ public class InventoryGun implements IInventory {
                     tagcompound.setTag("Items", nbttaglist);
                 }
             }
-//Показывает
         }
 
 

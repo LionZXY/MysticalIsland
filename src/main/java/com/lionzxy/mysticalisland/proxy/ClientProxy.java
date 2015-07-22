@@ -1,10 +1,8 @@
 package com.lionzxy.mysticalisland.proxy;
 
 import com.lionzxy.mysticalisland.MysticalIslandItems;
-import com.lionzxy.mysticalisland.client.render.RenderGun;
-import cpw.mods.fml.common.registry.GameRegistry;
-import net.minecraft.client.Minecraft;
-import net.minecraft.item.Item;
+import com.lionzxy.mysticalisland.client.render.RenderFlintGun;
+import com.lionzxy.mysticalisland.client.render.RenderPistonGun;
 import net.minecraftforge.client.MinecraftForgeClient;
 
 /**
@@ -13,8 +11,8 @@ import net.minecraftforge.client.MinecraftForgeClient;
 public class ClientProxy extends CommonProxy{
     public void registerRender(){
 
-       MinecraftForgeClient.registerItemRenderer(MysticalIslandItems.testGun, new RenderGun());
-
+       MinecraftForgeClient.registerItemRenderer(MysticalIslandItems.flintGun, new RenderFlintGun());
+        MinecraftForgeClient.registerItemRenderer(MysticalIslandItems.pistonGun, new RenderPistonGun());
     }
     public void registerProxies(){
         super.registerProxies();

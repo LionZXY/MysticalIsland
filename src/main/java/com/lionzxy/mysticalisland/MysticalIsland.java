@@ -20,6 +20,7 @@ public class MysticalIsland {
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event)
     {
+        MysticalIslandConfig.preInit();
         MysticalIslandItems.allLoad();
         proxy.registerProxies();
         proxy.registerRender();

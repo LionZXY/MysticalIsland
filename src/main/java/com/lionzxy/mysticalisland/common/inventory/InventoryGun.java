@@ -1,7 +1,9 @@
 package com.lionzxy.mysticalisland.common.inventory;
 
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -21,7 +23,7 @@ public class InventoryGun implements IInventory {
         /**
          * Inventory's size must be same as number of slots you add to the Container class
          */
-        private ItemStack[] inventory = new ItemStack[INV_SIZE];
+        public ItemStack[] inventory = new ItemStack[INV_SIZE];
 
         /**
          * Provides NBT Tag Compound to reference
@@ -117,7 +119,9 @@ public class InventoryGun implements IInventory {
         public boolean isUseableByPlayer(EntityPlayer player) {
             return true;
         }
-
+        public void allSave(){
+            writeToNBT(player.inventory.getCurrentItem().getTagCompound());
+        }
         @Override
         public void openInventory() {
 
@@ -130,7 +134,12 @@ public class InventoryGun implements IInventory {
 
         @Override
         public boolean isItemValidForSlot(int slot, ItemStack itemstack) {
-            return true;
+            switch (slot){
+               // case 0: if(itemstack.getItem()== bullet){return true;}break;
+                case 1: if(itemstack.getItem()== Items.gunpowder){return true;}break;
+                case 2: if(itemstack.getItem()== Items.flint_and_steel){return true;}break;
+            }
+            return false;
         }
 
         /**

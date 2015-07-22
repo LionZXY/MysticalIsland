@@ -3,18 +3,22 @@ package com.lionzxy.mysticalisland.client.render;
 import com.lionzxy.mysticalisland.MysticalIslandVersion;
 import com.lionzxy.mysticalisland.client.models.FlintGun;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.model.ModelBase;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.IItemRenderer;
 import org.lwjgl.opengl.GL11;
 
+import java.util.Objects;
+
 /**
  * Created by lionzxy on 20.07.15.
  */
-public class RenderGun implements IItemRenderer {
+public class RenderFlintGun implements IItemRenderer {
     protected FlintGun model;
-    public RenderGun(){
+    public RenderFlintGun(){
+
         model = new FlintGun();
     }
     @Override

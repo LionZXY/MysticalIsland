@@ -13,11 +13,12 @@ import org.lwjgl.opengl.GL11;
 public class GuiGun extends GuiContainer {
     int guiWidth=175;
     int guiHeight=155;
-    private static final ResourceLocation textureLocation =
-            new ResourceLocation(MysticalIslandVersion.MODID, "textures/gui/gunGui.png");
+    private ResourceLocation textureLocation;
 
-    public GuiGun(ContainerGun container) {
+    public GuiGun(ContainerGun container,ResourceLocation textureLocation) {
         super(container);
+        this.textureLocation=textureLocation;
+
     }
 
     @Override

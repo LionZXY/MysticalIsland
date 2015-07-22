@@ -101,7 +101,7 @@ public class InventoryGun implements IInventory {
 
         @Override
         public int getInventoryStackLimit() {
-            return 64;
+            return 1024;
         }
 
         @Override
@@ -176,5 +176,6 @@ public class InventoryGun implements IInventory {
             // Add the TagList to the ItemStack's Tag Compound with the name "ItemInventory"
             tagcompound.setTag("ItemInventory", items);
         }
+
 
 }

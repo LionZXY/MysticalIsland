@@ -2,6 +2,7 @@ package com.lionzxy.mysticalisland.common.item;
 
 import com.lionzxy.mysticalisland.MysticalIsland;
 import com.lionzxy.mysticalisland.MysticalIslandGuiHandler;
+import com.lionzxy.mysticalisland.MysticalIslandTab;
 import com.lionzxy.mysticalisland.MysticalIslandVersion;
 import com.lionzxy.mysticalisland.common.entity.EntityGun;
 import com.lionzxy.mysticalisland.common.inventory.InventoryGun;
@@ -25,9 +26,9 @@ public class Gun extends Item {
     String resourceLocation;
     public Gun(){
         super();
-        this.setCreativeTab(CreativeTabs.tabBlock);
+        this.setCreativeTab(MysticalIslandTab.tabGeneral);
         this.setUnlocalizedName("testgun");
-        this.setTextureName("flintgun");
+        this.setTextureName(MysticalIslandVersion.MODID+":gun/flintgun");
         this.setMaxStackSize(1);
     }
 

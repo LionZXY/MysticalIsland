@@ -3,6 +3,7 @@ package com.lionzxy.mysticalisland;
 import com.lionzxy.mysticalisland.proxy.CommonProxy;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
+import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 
 /**
@@ -17,10 +18,16 @@ public class MysticalIsland {
     public static MysticalIsland instance;
 
     @Mod.EventHandler
-    public void preLoad(FMLPreInitializationEvent event)
+    public void preInit(FMLPreInitializationEvent event)
     {
         MysticalIslandItems.allLoad();
         proxy.registerProxies();
         proxy.registerRender();
+        MysticalIslandTab.postInit();
+    }
+    @Mod.EventHandler
+    public void postInit(FMLPostInitializationEvent event)
+    {
+        MysticalIslandTab.postInit();
     }
 }

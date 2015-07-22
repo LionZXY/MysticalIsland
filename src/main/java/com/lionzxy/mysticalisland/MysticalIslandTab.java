@@ -11,6 +11,6 @@ import net.minecraft.item.ItemStack;
 public class MysticalIslandTab {
         public static final CreativeTabs tabGeneral = new MyTab("tabGeneral");
         public static void postInit() {
-            ((MyTab) tabGeneral).setTabIconItem(new ItemStack(Items.arrow));
+            ((MyTab) tabGeneral).setTabIconItem(new ItemStack(MysticalIslandItems.testGun));
         }
 }

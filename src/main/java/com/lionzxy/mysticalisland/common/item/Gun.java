@@ -23,7 +23,6 @@ import java.util.List;
  * Created by lionzxy on 16.07.15.
  */
 public class Gun extends Item {
-    String resourceLocation;
     public Gun(){
         super();
         this.setCreativeTab(MysticalIslandTab.tabGeneral);
@@ -34,11 +33,11 @@ public class Gun extends Item {
 
     public ItemStack onItemRightClick(ItemStack item, World world, EntityPlayer player){
         if (!world.isRemote && player.isSneaking()) player.openGui(MysticalIsland.instance, MysticalIslandGuiHandler.GUN, world, player.inventory.currentItem, 0, 0);
-        if (!world.isRemote && Shot(player))
+        if (!world.isRemote )
         {
-
+            System.out.println(player.inventory.getCurrentItem().getTagCompound());
             //world.playSound(player.posX, player.posY, player.posZ, MysticalIslandVersion.MODID+":flint", 15.0F, 15F, false);
-            world.spawnEntityInWorld(new EntityGun(world, player,1));
+            world.spawnEntityInWorld(new EntityGun(world, player, 1));
         }
         return item;
     }
@@ -55,7 +54,7 @@ public class Gun extends Item {
         return new InventoryGun(gun);
     }
     public static boolean Shot(EntityPlayer player){
-        ItemStack currentItem = player.getCurrentEquippedItem();
+        ItemStack currentItem = player.inventory.getCurrentItem();
         NBTTagList items = player.getCurrentEquippedItem().getTagCompound().getTagList("ItemInventory", Constants.NBT.TAG_COMPOUND);
         if(currentItem.hasTagCompound()){
             // TO DO

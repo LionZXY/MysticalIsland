@@ -6,6 +6,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraftforge.common.util.Constants;
+import org.lwjgl.Sys;
 
 /**
  * Created by lionzxy on 16.07.15.
@@ -25,7 +26,7 @@ public class InventoryGun implements IInventory {
         /**
          * Provides NBT Tag Compound to reference
          */
-        private final ItemStack invItem;
+        private ItemStack invItem;
 
         public InventoryGun(ItemStack stack) {
             this.invItem = stack;
@@ -64,6 +65,7 @@ public class InventoryGun implements IInventory {
                     stack = stack.splitStack(amount);
                     markDirty();
                 } else {
+                    System.out.println("ELSE!");
                     setInventorySlotContents(slot, null);
                 }
             }
@@ -73,9 +75,6 @@ public class InventoryGun implements IInventory {
         @Override
         public ItemStack getStackInSlotOnClosing(int slot) {
             ItemStack stack = getStackInSlot(slot);
-            if (stack != null) {
-                setInventorySlotContents(slot, null);
-            }
             return stack;
         }
 
@@ -112,6 +111,7 @@ public class InventoryGun implements IInventory {
             }
 
             writeToNBT(invItem.getTagCompound());
+
         }
 
         @Override
@@ -126,8 +126,8 @@ public class InventoryGun implements IInventory {
 
         @Override
         public void closeInventory() {
-
             writeToNBT(invItem.getTagCompound());
+            System.out.println(invItem.getTagCompound());
         }
 
         @Override
@@ -140,6 +140,7 @@ public class InventoryGun implements IInventory {
          */
         public void readFromNBT(NBTTagCompound tagcompound) {
             // Gets the custom taglist we wrote to this compound.
+//Не показывает (Пустое)
             NBTTagList items = tagcompound.getTagList("ItemInventory", Constants.NBT.TAG_COMPOUND);
 
             for (int i = 0; i < items.tagCount(); ++i) {
@@ -157,24 +158,18 @@ public class InventoryGun implements IInventory {
          * A custom method to write our inventory to an ItemStack's NBT compound
          */
         public void writeToNBT(NBTTagCompound tagcompound) {
-            // Create a new NBT Tag List to store itemstacks as NBT Tags
-            NBTTagList items = new NBTTagList();
 
-            for (int i = 0; i < getSizeInventory(); ++i) {
-                // Only write stacks that contain items
-                if (getStackInSlot(i) != null) {
-                    // Make a new NBT Tag Compound to write the itemstack and slot index to
-                    NBTTagCompound item = new NBTTagCompound();
-                    item.setInteger("Slot", i);
-                    // Writes the itemstack in slot(i) to the Tag Compound we just made
-                    getStackInSlot(i).writeToNBT(item);
-
-                    // add the tag compound to our tag list
-                    items.appendTag(item);
+            NBTTagList nbttaglist = new NBTTagList();
+            for(int i = 0; i < inventory.length; i++){
+                if(inventory[i] != null){
+                    NBTTagCompound nbttagcompound1 = new NBTTagCompound();
+                    nbttagcompound1.setByte("Slot", (byte) i);
+                    inventory[i].writeToNBT(nbttagcompound1);
+                    nbttaglist.appendTag(nbttagcompound1);
+                    tagcompound.setTag("Items", nbttaglist);
                 }
             }
-            // Add the TagList to the ItemStack's Tag Compound with the name "ItemInventory"
-            tagcompound.setTag("ItemInventory", items);
+//Показывает
         }
 
 

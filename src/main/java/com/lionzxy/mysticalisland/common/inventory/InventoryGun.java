@@ -26,10 +26,10 @@ public class InventoryGun implements IInventory {
         /**
          * Provides NBT Tag Compound to reference
          */
-        private ItemStack invItem;
+        private EntityPlayer player;
 
-        public InventoryGun(ItemStack stack) {
-            this.invItem = stack;
+        public InventoryGun(ItemStack stack,EntityPlayer player) {
+            this.player=player;
             // Just in case the itemstack doesn't yet have an NBT Tag Compound:
             if (!stack.hasTagCompound()) {
                 stack.setTagCompound(new NBTTagCompound());
@@ -44,7 +44,7 @@ public class InventoryGun implements IInventory {
         }
 
         public ItemStack getInvItem() {
-            return invItem;
+            return player.inventory.getCurrentItem();
         }
 
         @Override
@@ -109,7 +109,7 @@ public class InventoryGun implements IInventory {
                     inventory[i] = null;
             }
 
-            writeToNBT(invItem.getTagCompound());
+            writeToNBT(player.inventory.getCurrentItem().getTagCompound());
 
         }
 
@@ -125,7 +125,7 @@ public class InventoryGun implements IInventory {
 
         @Override
         public void closeInventory() {
-            writeToNBT(invItem.getTagCompound());
+            writeToNBT(player.inventory.getCurrentItem().getTagCompound());
         }
 
         @Override

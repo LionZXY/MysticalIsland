@@ -4,6 +4,7 @@ import com.lionzxy.mysticalisland.MysticalIsland;
 import com.lionzxy.mysticalisland.MysticalIslandGuiHandler;
 import com.lionzxy.mysticalisland.MysticalIslandTab;
 import com.lionzxy.mysticalisland.MysticalIslandVersion;
+import com.lionzxy.mysticalisland.common.container.ContainerGun;
 import com.lionzxy.mysticalisland.common.entity.EntityGun;
 import com.lionzxy.mysticalisland.common.inventory.InventoryGun;
 import cpw.mods.fml.relauncher.Side;
@@ -50,8 +51,8 @@ public class Gun extends Item {
     {
         //list.add("Flint Gun");
     }
-    public static InventoryGun getInventory(ItemStack gun) {
-        return new InventoryGun(gun);
+    public static InventoryGun getInventory(ItemStack gun,EntityPlayer player) {
+        return new InventoryGun(gun,player);
     }
     public static boolean Shot(EntityPlayer player){
         ItemStack currentItem = player.inventory.getCurrentItem();

@@ -18,7 +18,7 @@ public class ContainerGun extends Container{
     private int currentSlot;
 
     public ContainerGun(EntityPlayer player, InventoryPlayer inventoryPlayer, ItemStack gun) {
-        this.inventory = Gun.getInventory(inventoryPlayer.getCurrentItem());
+        this.inventory = Gun.getInventory(inventoryPlayer.getCurrentItem(),player);
         this.currentSlot = inventoryPlayer.currentItem;
 
         int i;
@@ -86,10 +86,8 @@ public class ContainerGun extends Container{
 
     @Override
     public void onContainerClosed(EntityPlayer player) {
-        inventory.writeToNBT(player.inventory.getCurrentItem().getTagCompound());
-        System.out.println(player.inventory.getCurrentItem().getTagCompound());
+        inventory.closeInventory();
         super.onContainerClosed(player);
-
     }
 
     /**

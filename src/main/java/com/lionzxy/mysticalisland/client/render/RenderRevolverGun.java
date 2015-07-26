@@ -1,8 +1,8 @@
 package com.lionzxy.mysticalisland.client.render;
 
 import com.lionzxy.mysticalisland.MysticalIslandVersion;
-import com.lionzxy.mysticalisland.client.models.FlintGun;
-import com.lionzxy.mysticalisland.client.models.PistonGun;
+
+import com.lionzxy.mysticalisland.client.models.RevolverGun;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemStack;
@@ -11,13 +11,13 @@ import net.minecraftforge.client.IItemRenderer;
 import org.lwjgl.opengl.GL11;
 
 /**
- * Created by lionzxy on 22.07.15.
+ * Created by nikit_000 on 26.07.2015.
  */
-public class RenderPistonGun implements IItemRenderer {
-    protected PistonGun model;
-    public RenderPistonGun(){
+public class RenderRevolverGun implements IItemRenderer {
+    protected RevolverGun model;
+    public RenderRevolverGun(){
 
-        model = new PistonGun();
+        model = new RevolverGun();
     }
     @Override
     public boolean handleRenderType(ItemStack item, ItemRenderType type) {
@@ -51,7 +51,7 @@ public class RenderPistonGun implements IItemRenderer {
                 break;
 
         }
-        Minecraft.getMinecraft().renderEngine.bindTexture(new ResourceLocation(MysticalIslandVersion.MODID, "textures/models/pistonGun.png"));
+        Minecraft.getMinecraft().renderEngine.bindTexture(new ResourceLocation(MysticalIslandVersion.MODID, "textures/models/revolverGun.png"));
         model.render((Entity) data[1], 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.07F);
         GL11.glEnable(GL11.GL_LIGHTING);
         GL11.glPopMatrix();

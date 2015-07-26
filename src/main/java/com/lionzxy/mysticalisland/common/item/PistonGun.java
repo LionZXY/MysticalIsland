@@ -4,7 +4,7 @@ import com.lionzxy.mysticalisland.MysticalIslandConfig;
 import com.lionzxy.mysticalisland.MysticalIslandGuiHandler;
 import com.lionzxy.mysticalisland.MysticalIslandItems;
 import com.lionzxy.mysticalisland.MysticalIslandVersion;
-import net.minecraft.init.Items;
+import com.lionzxy.mysticalisland.common.item.libs.Gun;
 import net.minecraft.util.ResourceLocation;
 
 /**
